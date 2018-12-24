@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-class AddDeck extends Component {
+class AddCard extends Component {
   render() {
     return (
       <View>
@@ -15,4 +15,4 @@ class AddDeck extends Component {
   }
 }
 
-export default AddDeck;
+export default AddCard;
