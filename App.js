@@ -2,14 +2,16 @@ import React from 'react';
 import { View, Platform, StatusBar, StyleSheet, Text } from 'react-native';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
+import AddCard from './components/AddCard';
 import Deck from './components/Deck';
+import Quiz from './components/Quiz';
 import {
   createBottomTabNavigator,
   createAppContainer,
   createStackNavigator,
 } from 'react-navigation';
 import { Constants } from 'expo';
-import { green, white } from './utils/colors';
+import { green, white, purple } from './utils/colors';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -25,9 +27,7 @@ const Tabs = createBottomTabNavigator(
       screen: DeckList,
       navigationOptions: {
         tabBarLabel: 'Decks',
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-bookmarks" size={30} color={tintColor} />
-        ),
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-book" size={35} color={tintColor} />,
       },
     },
     AddDeck: {
@@ -35,7 +35,7 @@ const Tabs = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Add Deck',
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="plus-square" size={30} color={tintColor} />
+          <FontAwesome name="plus-square" size={35} color={tintColor} />
         ),
       },
     },
@@ -73,24 +73,43 @@ const MainNavigator = createStackNavigator({
       },
     },
   },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: green,
+      },
+    },
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: green,
+      },
+    },
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: green,
+      },
+    },
+  },
 });
 const AppContainer = createAppContainer(MainNavigator);
+
 export default class App extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <UdaciStatusBar backgroundColor={green} barStyle="light-content" />
         <AppContainer />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

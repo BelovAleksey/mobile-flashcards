@@ -5,10 +5,10 @@ class AddDeck extends Component {
   render() {
     return (
       <View>
-        <Text>What is the title of you new Deck?</Text>
-        <TextInput placeholder="Deck Title" />
+        <TextInput placeholder="Question" />
+        <TextInput placeholder="Answer" />
         <TouchableOpacity>
-          <Text>Create Deck</Text>
+          <Text>Submit</Text>
         </TouchableOpacity>
       </View>
     );
