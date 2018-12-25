@@ -1,14 +1,41 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { fetchDecksResult } from '../utils/api';
+import { connect } from 'react-redux';
+import Deck from './Deck';
+import { AppLoading } from 'expo';
+import { receiveDecks } from '../actions';
 
 class DeckList extends Component {
+  state = {
+    ready: false,
+  };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    fetchDecksResult()
+      .then(decks => dispatch(receiveDecks(decks)))
+      .then(() => this.setState({ ready: true }));
+  }
+
   render() {
-    return (
-      <View>
-        <Text>Deck List</Text>
+    const { ready } = this.state;
+    const { decks } = this.props;
+    if (!ready) {
+      return <AppLoading />;
+    }
+    return Object.values(decks).map(deck => (
+      <View key={deck.title}>
+        <Deck title={deck.title} />
       </View>
-    );
+    ));
   }
 }
 
-export default DeckList;
+function mapStateToProps(decks) {
+  return {
+    decks,
+  };
+}
+
+export default connect(mapStateToProps)(DeckList);

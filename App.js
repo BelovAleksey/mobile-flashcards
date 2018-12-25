@@ -5,6 +5,9 @@ import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
 import Deck from './components/Deck';
 import Quiz from './components/Quiz';
+import reducer from './reducers';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import {
   createBottomTabNavigator,
   createAppContainer,
@@ -106,10 +109,12 @@ const AppContainer = createAppContainer(MainNavigator);
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <UdaciStatusBar backgroundColor={green} barStyle="light-content" />
-        <AppContainer />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <UdaciStatusBar backgroundColor={green} barStyle="light-content" />
+          <AppContainer />
+        </View>
+      </Provider>
     );
   }
 }

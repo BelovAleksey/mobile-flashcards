@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import TextButton from './TextButton';
 
 class Deck extends Component {
   render() {
+    //const { deck } = this.props;
     return (
-      <View>
-        <Text>Deck1</Text>
-        <Text>2 cards</Text>
-        <TouchableOpacity>
-          <Text>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Start Quiz</Text>
-        </TouchableOpacity>
-        <TextButton>Delete Deck</TextButton>
-      </View>
+      <View />
+      // <TouchableOpacity key={deck.title}>
+      //   <View>
+      //     <Text>{deck.title}</Text>
+      //     <Text>
+      //       {deck.questions.length > 1
+      //         ? deck.questions.length + ' cards'
+      //         : deck.questions.length + ' card'}
+      //     </Text>
+      //   </View>
+      // </TouchableOpacity>
     );
   }
 }
 
-export default Deck;
+function mapStateToProps(decks, title) {
+  console.log(decks);
+  console.log(title);
+  return {
+    decks,
+  };
+}
+
+export default connect(mapStateToProps)(Deck);
