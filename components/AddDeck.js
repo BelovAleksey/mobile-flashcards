@@ -14,7 +14,6 @@ class AddDeck extends Component {
         questions: [],
       },
     };
-    console.log(deck);
     this.props.dispatch(addDeck(deck));
     this.toHome();
   };
