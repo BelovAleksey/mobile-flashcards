@@ -17,13 +17,15 @@ class DeckDetail extends Component {
     goBack();
     //add remove Deck from Storage
   };
-
+  shouldComponentUpdate(nextProps) {
+    return nextProps.deck !== null;
+  }
   render() {
     const { deck } = this.props;
     return (
       <View>
-        <Text>Deck1</Text>
-        <Text>2 cards</Text>
+        <Text>{deck.title}</Text>
+        <Text>{deck.questions.length}</Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('AddCard', { title: deck.title })}
         >

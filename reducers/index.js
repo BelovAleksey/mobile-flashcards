@@ -12,6 +12,8 @@ function decks(state = {}, action) {
         ...state,
         ...action.deck,
       };
+    default:
+      return state;
   }
 }
 export default decks;

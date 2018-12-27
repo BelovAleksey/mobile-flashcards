@@ -3,7 +3,6 @@ import { View, Platform, StatusBar, StyleSheet, Text } from 'react-native';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
-import Deck from './components/Deck';
 import DeckDetail from './components/DeckDetail';
 import Quiz from './components/Quiz';
 import reducer from './reducers';
@@ -68,15 +67,6 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
   },
-  Deck: {
-    screen: Deck,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: green,
-      },
-    },
-  },
   DeckDetail: {
     screen: DeckDetail,
     navigationOptions: {
@@ -88,15 +78,6 @@ const MainNavigator = createStackNavigator({
   },
   AddCard: {
     screen: AddCard,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: green,
-      },
-    },
-  },
-  Deck: {
-    screen: Deck,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
