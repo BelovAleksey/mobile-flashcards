@@ -5,28 +5,30 @@ import TextButton from './TextButton';
 
 class Deck extends Component {
   render() {
-    //const { deck } = this.props;
+    const { deck } = this.props;
+    console.log(this.props);
+    console.log(this.props.navigation);
     return (
-      <View />
-      // <TouchableOpacity key={deck.title}>
-      //   <View>
-      //     <Text>{deck.title}</Text>
-      //     <Text>
-      //       {deck.questions.length > 1
-      //         ? deck.questions.length + ' cards'
-      //         : deck.questions.length + ' card'}
-      //     </Text>
-      //   </View>
-      // </TouchableOpacity>
+      <TouchableOpacity
+        key={deck.title}
+        onPress={() => this.props.navigation.navigate('DeckDetail', { title: deck.title })}
+      >
+        <View>
+          <Text>{deck.title}</Text>
+          <Text>
+            {deck.questions.length > 1
+              ? deck.questions.length + ' cards'
+              : deck.questions.length + ' card'}
+          </Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
-function mapStateToProps(decks, title) {
-  console.log(decks);
-  console.log(title);
+function mapStateToProps(decks, { title }) {
   return {
-    decks,
+    deck: decks[title],
   };
 }
 
