@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class Quiz extends Component {
   state = {
@@ -24,6 +25,7 @@ class Quiz extends Component {
       );
     }
     if (cardNumber === countOfCard) {
+      clearLocalNotification().then(setLocalNotification);
       return (
         <View>
           <Text>
