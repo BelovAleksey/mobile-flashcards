@@ -1,3 +1,6 @@
+import { AsyncStorage } from 'react-native';
+const DECKS_STORAGE_KEY = 'MobileFlashcards:decks';
+
 const decks = {
   React: {
     title: 'React',
@@ -23,13 +26,31 @@ const decks = {
     ],
   },
 };
-function initialDecksResults() {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      resolve(decks);
-    }, 200);
-  });
-}
+
 export function fetchDecksResult() {
-  return initialDecksResults();
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(initialDecksResults);
+}
+
+function initialDecksResults(results) {
+  return results === null
+    ? new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
+          resolve(decks);
+        }, 200);
+      })
+    : JSON.parse(results);
+}
+
+export function submitDeck(deck) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck));
+}
+
+export function removeDeck(title) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    data[title] = undefined;
+    delete data[title];
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+  });
 }

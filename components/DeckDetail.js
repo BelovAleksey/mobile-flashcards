@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import TextButton from './TextButton';
 import { addDeck } from '../actions';
+import { removeDeck } from '../utils/api';
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -15,7 +16,7 @@ class DeckDetail extends Component {
     const { remove, goBack, title } = this.props;
     remove();
     goBack();
-    //add remove Deck from Storage
+    removeDeck(title);
   };
   shouldComponentUpdate(nextProps) {
     return nextProps.deck !== null;
