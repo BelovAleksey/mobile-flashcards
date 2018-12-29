@@ -14,5 +14,6 @@ const styles = StyleSheet.create({
   reset: {
     textAlign: 'center',
     color: green,
+    fontSize: 25,
   },
 });

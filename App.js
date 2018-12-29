@@ -18,7 +18,7 @@ import { green, white, purple } from './utils/colors';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { setLocalNotification } from './utils/helpers';
 
-function UdaciStatusBar({ backgroundColor, ...props }) {
+function MobileStatusBar({ backgroundColor, ...props }) {
   return (
     <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
@@ -31,7 +31,10 @@ const Tabs = createBottomTabNavigator(
       screen: DeckList,
       navigationOptions: {
         tabBarLabel: 'Decks',
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-book" size={35} color={tintColor} />,
+        headerStyle: {
+          size: 20,
+        },
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-book" size={50} color={tintColor} />,
       },
     },
     AddDeck: {
@@ -39,7 +42,7 @@ const Tabs = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Add Deck',
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="plus-square" size={35} color={tintColor} />
+          <FontAwesome name="plus-square" size={50} color={tintColor} />
         ),
       },
     },
@@ -50,8 +53,10 @@ const Tabs = createBottomTabNavigator(
     },
     tabBarOptions: {
       activeTintColor: Platform.OS === 'ios' ? green : white,
+      labelStyle: { fontSize: 20 },
       style: {
-        height: 56,
+        height: 80,
+        padding: 10,
         backgroundColor: Platform.OS === 'ios' ? white : green,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
@@ -106,7 +111,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
-          <UdaciStatusBar backgroundColor={green} barStyle="light-content" />
+          <MobileStatusBar backgroundColor={green} barStyle="light-content" />
           <AppContainer />
         </View>
       </Provider>

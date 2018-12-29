@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import { NavigationActions } from 'react-navigation';
 import { submitDeck } from '../utils/api';
+import { white, green, gray } from '../utils/colors';
 class AddDeck extends Component {
   state = { text: '' };
 
@@ -29,15 +30,56 @@ class AddDeck extends Component {
 
   render() {
     return (
-      <View>
-        <Text>What is the title of you new Deck?</Text>
-        <TextInput placeholder="Deck Title" onChangeText={text => this.setState({ text })} />
-        <TouchableOpacity disabled={this.state.text === ''} onPress={this.createDeck}>
-          <Text>Create Deck</Text>
+      <View style={styles.container}>
+        <Text style={styles.baseText}>What is the title of you new Deck?</Text>
+        <TextInput
+          style={styles.inputTitle}
+          placeholder="Deck Title"
+          onChangeText={text => this.setState({ text })}
+        />
+        <TouchableOpacity
+          style={styles.createDeckButton}
+          disabled={this.state.text === ''}
+          onPress={this.createDeck}
+        >
+          <Text style={styles.submitBtnText}>Create Deck</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 200,
+    backgroundColor: white,
+    alignItems: 'center',
+  },
+  inputTitle: {
+    backgroundColor: gray,
+    fontSize: 25,
+    marginTop: 20,
+    paddingLeft: 10,
+    height: 45,
+    width: 220,
+    borderRadius: 10,
+  },
+  baseText: {
+    fontSize: 20,
+  },
+  submitBtnText: {
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  createDeckButton: {
+    marginTop: 200,
+    borderRadius: 10,
+    height: 45,
+    width: 220,
+    backgroundColor: green,
+    justifyContent: 'center',
+  },
+});
 
 export default connect()(AddDeck);
