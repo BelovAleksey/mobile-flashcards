@@ -4,7 +4,7 @@ import { fetchDecksResult } from '../utils/api';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { receiveDecks } from '../actions';
-import { white, green, gray } from '../utils/colors';
+import { white, gray } from '../utils/colors';
 
 class DeckList extends Component {
   state = {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import TextButton from './TextButton';
 import { addDeck } from '../actions';
 import { removeDeck } from '../utils/api';
-import { green, white, gray } from '../utils/colors';
+import { white, gray } from '../utils/colors';
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
