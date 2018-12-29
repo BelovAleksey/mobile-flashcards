@@ -76,7 +76,7 @@ class Quiz extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 200,
+    paddingTop: 20,
     backgroundColor: white,
     alignItems: 'center',
   },

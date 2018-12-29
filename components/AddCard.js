@@ -47,7 +47,7 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 200,
+    paddingTop: 150,
     backgroundColor: white,
     alignItems: 'center',
   },
