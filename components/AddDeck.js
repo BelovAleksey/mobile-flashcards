@@ -6,12 +6,18 @@ import { NavigationActions } from 'react-navigation';
 import { submitDeck } from '../utils/api';
 import { white, green, gray } from '../utils/colors';
 class AddDeck extends Component {
-  state = { text: '' };
+  state = { name: '', deckExist: false };
 
   createDeck = () => {
+    const { name } = this.state;
+    const { decks } = this.props;
+    if (decks[name] !== undefined) {
+      this.setState({ deckExist: true });
+      return;
+    }
     const deck = {
-      [this.state.text]: {
-        title: this.state.text,
+      [name]: {
+        title: name,
         questions: [],
       },
     };
@@ -29,17 +35,24 @@ class AddDeck extends Component {
   };
 
   render() {
+    const { name, deckExist } = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.baseText}>What is the title of you new Deck?</Text>
         <TextInput
           style={styles.inputTitle}
           placeholder="Deck Title"
-          onChangeText={text => this.setState({ text })}
+          clearButtonMode="always"
+          onChangeText={name => this.setState({ name, deckExist: false })}
         />
+        {deckExist ? (
+          <Text style={{ fontSize: 20, color: 'red' }}>
+            Deck "{name}" is already in use. Please choose another.
+          </Text>
+        ) : null}
         <TouchableOpacity
           style={styles.createDeckButton}
-          disabled={this.state.text === ''}
+          disabled={!name.trim()}
           onPress={this.createDeck}
         >
           <Text style={styles.submitBtnText}>Create Deck</Text>
@@ -81,5 +94,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-export default connect()(AddDeck);
+function mapStateToProps(decks) {
+  return {
+    decks,
+  };
+}
+export default connect(mapStateToProps)(AddDeck);

@@ -34,7 +34,7 @@ class AddCard extends Component {
         />
         <TouchableOpacity
           style={styles.createCardButton}
-          disabled={question === '' || answer === ''}
+          disabled={!question.trim() || !answer.trim()}
           onPress={this.addCard}
         >
           <Text style={styles.submitBtnText}>Submit</Text>

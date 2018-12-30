@@ -66,7 +66,7 @@ class Quiz extends Component {
           style={styles.unCorrectButton}
           onPress={() => this.setState({ cardNumber: cardNumber + 1 })}
         >
-          <Text style={styles.baseText}>Uncorrect</Text>
+          <Text style={styles.baseText}>Incorrect</Text>
         </TouchableOpacity>
       </View>
     );
